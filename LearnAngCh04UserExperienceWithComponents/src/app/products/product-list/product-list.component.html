@@ -1,0 +1,9 @@
+<h2>Product List</h2>
+<ul>
+    <li (click)="selectedProduct = 'WebCam'">WebCam</li>
+    <li (click)="selectedProduct = 'Mic'">Mic</li>
+    <li (click)="selectedProduct = 'Keyboard'">Keyboard</li>
+</ul>
+<app-product-detail #product [name]="selectedProduct" (bought)="onBuy($event)">    
+</app-product-detail>
+<span>{{product.namename}}</span>

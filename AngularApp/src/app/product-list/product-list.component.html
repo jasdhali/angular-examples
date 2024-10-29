@@ -1,8 +1,28 @@
 <h2>Product List</h2>
 <ul>
-<li (click)="selectedProduct = 'Webcam'">Webcam</li>
-<li (click)="selectedProduct = 'Microphone'">Microphone</li>
-<li (click)="selectedProduct = 'Wireless Keyboard'">Wireless
-Keyboard</li>
+    <input appNumeric />
+    <li *ngFor="let product of products|sort;let i = index" (click)="selectedProduct = product">
+        <!-- {{product.name | uppercase}}
+        --
+        {{product.price | currency: 'EUR'}}
+        --
+        {{product | json}}
+        --
+        {{today| date :'fullDate' }} -->
+        <app-product-view [id]="i"></app-product-view>
+    </li>
 </ul>
-<app-product-detail #product [name]="selectedProduct" (bought)="onBuy($event)"></app-product-detail>
+<h3>Offers</h3>
+<ng-template appProductHost></ng-template>
+
+<app-product-detail 
+*ngIf="selectedProduct; else noProduct"
+[product]="selectedProduct" 
+(bought)="onBuy($event)"></app-product-detail>
+
+<ng-template #noProduct>
+    <p>No Product selected!</p>
+</ng-template>
+
+<h2>favories</h2>
+<app-favorites></app-favorites>

@@ -1,0 +1,15 @@
+<h2>Product List..</h2>
+<ul>
+    <li *ngFor="let product of products;let i=index;let eoFlag=even" (click)="selectedProduct = product">
+        {{product.name|uppercase}}--{{product.price|percent}}</li>
+</ul>
+<app-product-detail
+*ngIf="selectedProduct; else noProduct"
+[product]="selectedProduct"
+(bought)="onBuy()">
+</app-product-detail>
+<ng-template #noProduct>
+    <p>No product selected!</p>
+</ng-template>
+<h2>Fav</h2>
+<app-favorites></app-favorites>

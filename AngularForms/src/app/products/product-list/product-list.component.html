@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let product of products | sort">
+    <a [routerLink]="['/products', product.id]" (click)="simpleCall()">{{product.name}}</a>
+    <button  
+  (click)="simpleCall()"
+>Login</button>
+  </li>
+</ul>
+<app-product-create (added)="onAdd($event)"></app-product-create>
